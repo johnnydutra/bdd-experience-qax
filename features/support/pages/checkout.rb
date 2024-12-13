@@ -20,4 +20,22 @@ class CheckoutPage
     expect(total.text).to eql amount
   end
 
+  def find_zip_code(zip_code)
+    find('input[name=cep]').set(zip_code)
+    click_on 'Buscar CEP'
+  end
+
+  def fill_address(address)
+    find('input[name=number]').set(address[:number])
+    find('input[name=complement]').set(address[:complement])
+  end
+
+  def select_payment(payment_option)
+    find('label div', text: payment_option.upcase).click
+  end
+
+  def finish_checkout
+    click_on 'Confirmar pedido'
+  end
+
 end
